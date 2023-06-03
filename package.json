@@ -1,0 +1,22 @@
+{
+  "name": "0mg.ups",
+  "version": "1.0.0",
+  "description": "Universal Package Search",
+  "main": "bin/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0mgfriday/ups.git"
+  },
+  "author": "0mgfriday",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/0mgfriday/ups/issues"
+  },
+  "homepage": "https://github.com/0mgfriday/ups#readme",
+  "bin": {
+    "hello": "./bin/index.js"
+  }
+}
