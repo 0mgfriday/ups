@@ -7,6 +7,7 @@ const search = "walmart";
 // await searchNpm(search)
 // await searchNuget(search)
 // await searchMaven(search)
+await searchDockerhub(search)
 
 async function searchNpm(query) {
     const response = await fetch(`https://registry.npmjs.com/-/v1/search?text=${encodeURIComponent(query)}`);
@@ -54,6 +55,29 @@ async function searchMaven(query) {
             console.log(obj.id)
             console.log('[No description]')
             console.log(`https://search.maven.org/artifact/${obj.g}/${obj.a}`)
+            console.log()
+        })
+    } else {
+        console.warn('npm search failed');
+    }
+}
+
+async function searchDockerhub(query) {
+    const response = await fetch(`https://hub.docker.com/api/content/v1/products/search?page_size=20&q=${encodeURIComponent(query)}&type=image"`, {
+        headers: {'Search-Version': 'v3'}
+    });
+    if (response.ok) {
+        const data = await response.json();
+        
+        data.summaries.forEach(obj => {
+            let description = obj.short_description
+            if (description == "") {
+                description = "[No description]"
+            }
+
+            console.log(obj.name)
+            console.log(description)
+            console.log(`https://hub.docker.com/r/${obj.name}`)
             console.log()
         })
     } else {
