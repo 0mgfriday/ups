@@ -6,3 +6,8 @@ Script for searching packages across multiple ecosystems
 - nuget
 - maven
 - dockerhub
+
+## Usage
+```
+node . 
+```
