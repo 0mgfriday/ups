@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-import fetch from 'node-fetch';
-import chalk from 'chalk';
+import fetch from 'node-fetch'
+import chalk from 'chalk'
 
-const log = console.log;
+const log = console.log
 
 if (process.argv.length === 2) {
     console.error("Search argument is required")
@@ -22,9 +22,9 @@ function logName(name) {
 }
 
 async function searchNpm(query) {
-    const response = await fetch(`https://registry.npmjs.com/-/v1/search?text=${encodeURIComponent(query)}`);
+    const response = await fetch(`https://registry.npmjs.com/-/v1/search?text=${encodeURIComponent(query)}`)
     if (response.ok) {
-        const data = await response.json();
+        const data = await response.json()
     
         data.objects.forEach(obj => {
             logName(chalk.green(obj.package.name))
@@ -33,14 +33,14 @@ async function searchNpm(query) {
             log()
         })
     } else {
-        console.warn('npm search failed');
+        console.warn('npm search failed')
     }
 }
 
 async function searchNuget(query) {
-    const response = await fetch(`https://azuresearch-usnc.nuget.org/query?q=${encodeURIComponent(query)}&prerelease=true`);
+    const response = await fetch(`https://azuresearch-usnc.nuget.org/query?q=${encodeURIComponent(query)}&prerelease=true`)
     if (response.ok) {
-        const data = await response.json();
+        const data = await response.json()
     
         data.data.forEach(obj => {
             let description = obj.description
@@ -54,14 +54,14 @@ async function searchNuget(query) {
             log()
         })
     } else {
-        console.warn('npm search failed');
+        console.warn('npm search failed')
     }
 }
 
 async function searchMaven(query) {
-    const response = await fetch(`https://search.maven.org/solrsearch/select?q=${encodeURIComponent(query)}&start=0&rows=20`);
+    const response = await fetch(`https://search.maven.org/solrsearch/select?q=${encodeURIComponent(query)}&start=0&rows=20`)
     if (response.ok) {
-        const data = await response.json();
+        const data = await response.json()
     
         data.response.docs.forEach(obj => {
             logName(obj.id)
@@ -70,16 +70,16 @@ async function searchMaven(query) {
             log()
         })
     } else {
-        console.warn('npm search failed');
+        console.warn('npm search failed')
     }
 }
 
 async function searchDockerhub(query) {
     const response = await fetch(`https://hub.docker.com/api/content/v1/products/search?page_size=20&q=${encodeURIComponent(query)}&type=image"`, {
         headers: {'Search-Version': 'v3'}
-    });
+    })
     if (response.ok) {
-        const data = await response.json();
+        const data = await response.json()
         
         data.summaries.forEach(obj => {
             let description = obj.short_description
@@ -93,6 +93,6 @@ async function searchDockerhub(query) {
             log()
         })
     } else {
-        console.warn('npm search failed');
+        console.warn('npm search failed')
     }
 }
