@@ -81,17 +81,19 @@ async function searchDockerhub(query) {
     if (response.ok) {
         const data = await response.json()
         
-        data.summaries.forEach(obj => {
-            let description = obj.short_description
-            if (description == "") {
-                description = "[No description]"
-            }
-
-            logName(obj.name)
-            log(description)
-            log(`https://hub.docker.com/r/${obj.name}`)
-            log()
-        })
+        if (data.summaries !== null) {
+            data.summaries.forEach(obj => {
+                let description = obj.short_description
+                if (description == "") {
+                    description = "[No description]"
+                }
+    
+                logName(obj.name)
+                log(description)
+                log(`https://hub.docker.com/r/${obj.name}`)
+                log()
+            })
+        } 
     } else {
         console.warn('npm search failed')
     }
