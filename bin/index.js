@@ -1,13 +1,19 @@
 #!/usr/bin/env node
 
 import fetch from 'node-fetch';
+import chalk from 'chalk';
 
+const log = console.log;
 const search = "walmart";
 
-// await searchNpm(search)
-// await searchNuget(search)
-// await searchMaven(search)
+await searchNpm(search)
+await searchNuget(search)
+await searchMaven(search)
 await searchDockerhub(search)
+
+function logName(name) {
+    log(chalk.green(name))
+}
 
 async function searchNpm(query) {
     const response = await fetch(`https://registry.npmjs.com/-/v1/search?text=${encodeURIComponent(query)}`);
@@ -15,10 +21,10 @@ async function searchNpm(query) {
         const data = await response.json();
     
         data.objects.forEach(obj => {
-            console.log(obj.package.name)
-            console.log(obj.package.description ?? '[No description]')
-            console.log(obj.package.links.npm)
-            console.log()
+            logName(chalk.green(obj.package.name))
+            log(obj.package.description ?? '[No description]')
+            log(obj.package.links.npm)
+            log()
         })
     } else {
         console.warn('npm search failed');
@@ -36,10 +42,10 @@ async function searchNuget(query) {
                 description = obj.description.slice(0, 50)
             }
 
-            console.log(obj.title)
-            console.log(description)
-            console.log(obj.registration)
-            console.log()
+            logName(obj.title)
+            log(description)
+            log(obj.registration)
+            log()
         })
     } else {
         console.warn('npm search failed');
@@ -52,10 +58,10 @@ async function searchMaven(query) {
         const data = await response.json();
     
         data.response.docs.forEach(obj => {
-            console.log(obj.id)
-            console.log('[No description]')
-            console.log(`https://search.maven.org/artifact/${obj.g}/${obj.a}`)
-            console.log()
+            logName(obj.id)
+            log('[No description]')
+            log(`https://search.maven.org/artifact/${obj.g}/${obj.a}`)
+            log()
         })
     } else {
         console.warn('npm search failed');
@@ -75,10 +81,10 @@ async function searchDockerhub(query) {
                 description = "[No description]"
             }
 
-            console.log(obj.name)
-            console.log(description)
-            console.log(`https://hub.docker.com/r/${obj.name}`)
-            console.log()
+            logName(obj.name)
+            log(description)
+            log(`https://hub.docker.com/r/${obj.name}`)
+            log()
         })
     } else {
         console.warn('npm search failed');
