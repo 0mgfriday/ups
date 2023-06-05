@@ -9,7 +9,7 @@ Script for searching packages across multiple ecosystems
 
 ## Usage
 ```
-node . github
+node index.js github
 
 hosted-git-info
 Provides metadata and conversions from repository urls for GitHub, Bitbucket and GitLab

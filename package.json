@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/0mgfriday/ups#readme",
   "bin": {
-    "hello": "./bin/index.js"
+    "ups": "./bin/index.js"
   },
   "dependencies": {
     "chalk": "^5.2.0",
