@@ -19,9 +19,11 @@ object.assign
 ES6 spec-compliant Object.assign shim. From https://github.com/es-shims/es6-shim
 https://www.npmjs.com/package/object.assign
 
-release-it
-Generic CLI tool to automate versioning and package publishing-related tasks.
-https://www.npmjs.com/package/release-it
+...
+
+GitHub
+Modern .NET Standard library for GitHub.
+https://api.nuget.org/v3/registration5-semver1/github/index.json
 
 ...
 ```
