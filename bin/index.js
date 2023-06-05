@@ -4,7 +4,13 @@ import fetch from 'node-fetch';
 import chalk from 'chalk';
 
 const log = console.log;
-const search = "walmart";
+
+if (process.argv.length === 2) {
+    console.error("Search argument is required")
+    process.exit(1)
+}
+
+const search = process.argv[2]
 
 await searchNpm(search)
 await searchNuget(search)
