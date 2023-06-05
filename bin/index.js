@@ -59,7 +59,7 @@ async function searchNuget(query) {
 }
 
 async function searchMaven(query) {
-    const response = await fetch(`https://search.maven.org/solrsearch/select?q=${encodeURIComponent(query)}&start=0&rows=20`)
+    const response = await fetch(`https://search.maven.org/solrsearch/select?q=${encodeURIComponent(query)}&start=0`)
     if (response.ok) {
         const data = await response.json()
     
@@ -75,7 +75,7 @@ async function searchMaven(query) {
 }
 
 async function searchDockerhub(query) {
-    const response = await fetch(`https://hub.docker.com/api/content/v1/products/search?page_size=20&q=${encodeURIComponent(query)}&type=image"`, {
+    const response = await fetch(`https://hub.docker.com/api/content/v1/products/search?q=${encodeURIComponent(query)}&type=image"`, {
         headers: {'Search-Version': 'v3'}
     })
     if (response.ok) {
